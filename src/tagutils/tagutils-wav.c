@@ -79,7 +79,7 @@ _get_wavtags(char *filename, struct song_metadata *psong)
 
 	/* now, walk through the chunks */
 	current_offset = 12;
-	while(current_offset + 8 < psong->file_size)
+    while(current_offset + 8 < (uint32_t)(psong->file_size))
 	{
 		len = 8;
 		if(!(len = read(fd, hdr, len)) || (len != 8))
@@ -169,8 +169,7 @@ _get_wavtags(char *filename, struct song_metadata *psong)
 				//DEBUG DPRINTF(E_DEBUG, L_SCANNER, "%.*s: %.*s (%d)\n", 4, p, taglen, p + 8, taglen);
 				m = NULL;
 				if (taglen > 2048) {
-					DPRINTF(E_WARN, L_SCANNER, "Ignoring long tag [%.*s] in %s\n",
-				                4, p+8, filename);
+                    DPRINTF(E_WARN, L_SCANNER, "Ignoring long tag [%.*s] in %s\n", 4, p+8, filename);
 				}
 				else if(strncmp(p, "INAM", 4) == 0)
 					m = &(psong->title);

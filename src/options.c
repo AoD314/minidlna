@@ -137,7 +137,7 @@ readoptionsfile(const char * fname)
             value++;
 
         id = UPNP_INVALID;
-        for(i=0; i<sizeof(optionids)/sizeof(optionids[0]); i++)
+        for(i=0; i < (int)(sizeof(optionids)/sizeof(optionids[0])); i++)
         {
             /*printf("%2d %2d %s %s\n", i, optionids[i].id, name,
                    optionids[i].name); */
