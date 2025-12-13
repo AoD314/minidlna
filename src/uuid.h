@@ -26,13 +26,12 @@
 
 #define ETH_ALEN 6
 #ifndef NSEC_PER_SEC
-#define NSEC_PER_SEC 1000000000L
+    #define NSEC_PER_SEC 1000000000L
 #endif
 #ifndef NSEC_PER_MSEC
-#define NSEC_PER_MSEC 1000000L
+    #define NSEC_PER_MSEC 1000000L
 #endif
 
-int
-get_uuid_string(char *buf);
+int get_uuid_string(char* buf);
 
 #endif

@@ -29,16 +29,16 @@
 #ifndef __PROCESS_H__
 #define __PROCESS_H__
 
-#include <unistd.h>
 #include "clients.h"
+#include <unistd.h>
 
 struct child {
     pid_t pid;
     time_t age;
-    struct client_cache_s *client;
+    struct client_cache_s* client;
 };
 
-extern struct child *children;
+extern struct child* children;
 extern int number_of_children;
 
 /**
@@ -47,7 +47,7 @@ extern int number_of_children;
  * @return -1 if it couldn't fork, 0 in the child process, the pid of the
  *         child process in the parent process.
  */
-pid_t process_fork(struct client_cache_s *client);
+pid_t process_fork(struct client_cache_s* client);
 
 /**
  * Handler to be called upon receiving SIGCHLD. This signal is received by the
@@ -61,7 +61,7 @@ void process_handle_child_termination(int signal);
  * Daemonize the current process by forking itself and redirecting standard
  * input, standard output and standard error to /dev/null.
  * @return The pid of the process.
- */ 
+ */
 int process_daemonize(void);
 
 /**
@@ -71,11 +71,11 @@ int process_daemonize(void);
  * @return 0 if no other instance is running, -1 if the file name is invalid,
  *         -2 if another instance is running.
  */
-int process_check_if_running(const char *fname);
+int process_check_if_running(const char* fname);
 
 /**
  * Kill all child processes
  */
 void process_reap_children(void);
 
-#endif // __PROCESS_H__
+#endif  // __PROCESS_H__

@@ -4,6 +4,7 @@
 void tivo_bonjour_register(void);
 void tivo_bonjour_unregister(void);
 #else
-static inline void tivo_bonjour_register(void) {};
-static inline void tivo_bonjour_unregister(void) {};
+static inline void tivo_bonjour_register(void) { }
+
+static inline void tivo_bonjour_unregister(void) { }
 #endif

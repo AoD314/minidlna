@@ -47,31 +47,23 @@ struct NameValueParserData {
     char curelt[64];
 };
 
-#define XML_STORE_EMPTY_FL  0x01
+#define XML_STORE_EMPTY_FL 0x01
 
 /* ParseNameValue() */
-void
-ParseNameValue(const char * buffer, int bufsize,
-               struct NameValueParserData * data, uint32_t flags);
+void ParseNameValue(const char* buffer, int bufsize, struct NameValueParserData* data, uint32_t flags);
 
 /* ClearNameValueList() */
-void
-ClearNameValueList(struct NameValueParserData * pdata);
+void ClearNameValueList(struct NameValueParserData* pdata);
 
 /* GetValueFromNameValueList() */
-char *
-GetValueFromNameValueList(struct NameValueParserData * pdata,
-                          const char * Name);
+char* GetValueFromNameValueList(struct NameValueParserData* pdata, const char* Name);
 
 /* GetValueFromNameValueListIgnoreNS() */
-char *
-GetValueFromNameValueListIgnoreNS(struct NameValueParserData * pdata,
-                                  const char * Name);
+char* GetValueFromNameValueListIgnoreNS(struct NameValueParserData* pdata, const char* Name);
 
 /* DisplayNameValueList() */
 #ifdef DEBUG
-void
-DisplayNameValueList(char * buffer, int bufsize);
+void DisplayNameValueList(char* buffer, int bufsize);
 #endif
 
 #ifdef __cplusplus
@@ -79,4 +71,3 @@ DisplayNameValueList(char * buffer, int bufsize);
 #endif
 
 #endif
-

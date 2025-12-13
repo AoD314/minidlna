@@ -17,21 +17,19 @@
  */
 #if defined(HAVE_LINUX_SENDFILE_API)
 
-#include <sys/sendfile.h>
+    #include <sys/sendfile.h>
 
-int sys_sendfile(int sock, int sendfd, off_t *offset, off_t len)
-{
+int sys_sendfile(int sock, int sendfd, off_t* offset, off_t len) {
     return sendfile(sock, sendfd, offset, len);
 }
 
 #elif defined(HAVE_DARWIN_SENDFILE_API)
 
-#include <sys/types.h>
-#include <sys/socket.h>
-#include <sys/uio.h>
+    #include <sys/socket.h>
+    #include <sys/types.h>
+    #include <sys/uio.h>
 
-int sys_sendfile(int sock, int sendfd, off_t *offset, off_t len)
-{
+int sys_sendfile(int sock, int sendfd, off_t* offset, off_t len) {
     int ret;
 
     ret = sendfile(sendfd, sock, *offset, &len, NULL, 0);
@@ -42,12 +40,11 @@ int sys_sendfile(int sock, int sendfd, off_t *offset, off_t len)
 
 #elif defined(HAVE_FREEBSD_SENDFILE_API)
 
-#include <sys/types.h>
-#include <sys/socket.h>
-#include <sys/uio.h>
+    #include <sys/socket.h>
+    #include <sys/types.h>
+    #include <sys/uio.h>
 
-int sys_sendfile(int sock, int sendfd, off_t *offset, off_t len)
-{
+int sys_sendfile(int sock, int sendfd, off_t* offset, off_t len) {
     int ret;
     size_t nbytes = len;
 
@@ -59,10 +56,9 @@ int sys_sendfile(int sock, int sendfd, off_t *offset, off_t len)
 
 #else
 
-#include <errno.h>
+    #include <errno.h>
 
-int sys_sendfile(int sock, int sendfd, off_t *offset, off_t len)
-{
+int sys_sendfile(int sock, int sendfd, off_t* offset, off_t len) {
     errno = EINVAL;
     return -1;
 }

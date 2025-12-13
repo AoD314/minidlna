@@ -1,0 +1,33 @@
+BasedOnStyle: WebKit
+Language: Cpp
+Standard: c++17
+
+AlignAfterOpenBracket: Align
+AlignArrayOfStructures: Right
+AlignConsecutiveMacros:
+  Enabled: true
+AlignEscapedNewlines: Left
+AllowAllConstructorInitializersOnNextLine: false
+AllowShortCaseLabelsOnASingleLine: false
+AllowShortEnumsOnASingleLine: false
+AllowShortFunctionsOnASingleLine: Empty
+AllowShortLambdasOnASingleLine: Empty
+AlwaysBreakTemplateDeclarations: Yes
+BinPackArguments: false
+BinPackParameters: false
+BreakBeforeBraces: Attach
+BreakConstructorInitializers: BeforeColon
+BreakInheritanceList: BeforeColon
+ColumnLimit: 180
+IndentPPDirectives: BeforeHash
+IndentWidth: 4
+InsertBraces: true
+InsertNewlineAtEOF: true
+LineEnding: LF
+PackConstructorInitializers: Never
+PointerAlignment: Left
+RemoveSemicolon: true
+SeparateDefinitionBlocks: Always
+SpacesBeforeTrailingComments: 2
+TabWidth: 4
+UseTab: Never

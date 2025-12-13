@@ -24,20 +24,16 @@
 #define DEFAULT_RESP_SIZE 131072
 #define MAX_RESPONSE_SIZE 2097152
 
-#define CONTENT_DIRECTORY_SCHEMAS \
-    " xmlns:dc=\"http://purl.org/dc/elements/1.1/\"" \
+#define CONTENT_DIRECTORY_SCHEMAS                             \
+    " xmlns:dc=\"http://purl.org/dc/elements/1.1/\""          \
     " xmlns:upnp=\"urn:schemas-upnp-org:metadata-1-0/upnp/\"" \
     " xmlns=\"urn:schemas-upnp-org:metadata-1-0/DIDL-Lite/\""
-#define DLNA_NAMESPACE \
-    " xmlns:dlna=\"urn:schemas-dlna-org:metadata-1-0/\""
-#define PV_NAMESPACE \
-    " xmlns:pv=\"http://www.pv.com/pvns/\""
-#define SEC_NAMESPACE \
-    " xmlns:sec=\"http://www.sec.co.kr/dlna\""
+#define DLNA_NAMESPACE " xmlns:dlna=\"urn:schemas-dlna-org:metadata-1-0/\""
+#define PV_NAMESPACE   " xmlns:pv=\"http://www.pv.com/pvns/\""
+#define SEC_NAMESPACE  " xmlns:sec=\"http://www.sec.co.kr/dlna\""
 
-struct Response
-{
-    struct string_s *str;
+struct Response {
+    struct string_s* str;
     int start;
     int returned;
     int requested;
@@ -49,8 +45,6 @@ struct Response
 
 /* ExecuteSoapAction():
  * this method executes the requested Soap Action */
-void
-ExecuteSoapAction(struct upnphttp *, const char *, int);
+void ExecuteSoapAction(struct upnphttp*, const char*, int);
 
 #endif
-

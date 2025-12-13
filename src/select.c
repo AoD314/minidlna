@@ -26,12 +26,12 @@
  * SUCH DAMAGE.
  */
 
-#include <sys/types.h>
-#include <sys/select.h>
-#include <stdlib.h>
 #include <assert.h>
 #include <errno.h>
+#include <stdlib.h>
 #include <string.h>
+#include <sys/select.h>
+#include <sys/types.h>
 
 #include "event.h"
 #include "log.h"
@@ -47,25 +47,24 @@ static fd_set master_write_fd_set;
 static fd_set work_read_fd_set;
 static fd_set work_write_fd_set;
 
-static struct event **events;
+static struct event** events;
 static int nevents;
 static int max_fd;
 
 struct event_module event_module = {
-    .add =        select_add,
-    .del =        select_del,
-    .process =    select_process,
-    .init =     select_init,
-    .fini =        select_fini,
+    .add = select_add,
+    .del = select_del,
+    .process = select_process,
+    .init = select_init,
+    .fini = select_fini,
 };
 
-static int
-select_init(void)
-{
+static int select_init(void) {
 
-    events = calloc(FD_SETSIZE, sizeof(struct event *));
-    if (events == NULL)
+    events = calloc(FD_SETSIZE, sizeof(struct event*));
+    if (events == NULL) {
         return (ENOMEM);
+    }
 
     FD_ZERO(&master_read_fd_set);
     FD_ZERO(&master_write_fd_set);
@@ -75,18 +74,13 @@ select_init(void)
     return (0);
 }
 
-
-static void
-select_fini(void)
-{
+static void select_fini(void) {
 
     free(events);
     events = NULL;
 }
 
-static int
-select_add(struct event *ev)
-{
+static int select_add(struct event* ev) {
 
     assert(ev->fd < FD_SETSIZE);
 
@@ -99,8 +93,9 @@ select_add(struct event *ev)
         break;
     }
 
-    if (max_fd != -1 && max_fd < ev->fd)
+    if (max_fd != -1 && max_fd < ev->fd) {
         max_fd = ev->fd;
+    }
 
     events[nevents] = ev;
     ev->index = nevents++;
@@ -110,9 +105,7 @@ select_add(struct event *ev)
     return (0);
 }
 
-static int
-select_del(struct event *ev, int flags)
-{
+static int select_del(struct event* ev, int flags) {
 
     assert(ev->fd < FD_SETSIZE);
 
@@ -125,11 +118,12 @@ select_del(struct event *ev, int flags)
         break;
     }
 
-    if (max_fd == ev->fd)
+    if (max_fd == ev->fd) {
         max_fd = -1;
+    }
 
     if (ev->index < --nevents) {
-        struct event *ev0;
+        struct event* ev0;
 
         ev0 = events[nevents];
         events[ev->index] = ev0;
@@ -140,18 +134,18 @@ select_del(struct event *ev, int flags)
     return (0);
 }
 
-static int
-select_process(struct timeval *tv)
-{
-    struct event *ev;
+static int select_process(struct timeval* tv) {
+    struct event* ev;
     int ready, i;
 
     /* Need to rescan for max_fd. */
-    if (max_fd == -1)
+    if (max_fd == -1) {
         for (i = 0; i < nevents; i++) {
-            if (max_fd < events[i]->fd)
+            if (max_fd < events[i]->fd) {
                 max_fd = events[i]->fd;
+            }
         }
+    }
 
     work_read_fd_set = master_read_fd_set;
     work_write_fd_set = master_write_fd_set;
@@ -159,25 +153,29 @@ select_process(struct timeval *tv)
     ready = select(max_fd + 1, &work_read_fd_set, &work_write_fd_set, NULL, tv);
 
     if (ready == -1) {
-        if (errno == EINTR)
+        if (errno == EINTR) {
             return (errno);
+        }
         DPRINTF(E_FATAL, L_GENERAL, "select(): %s. EXITING\n", strerror(errno));
     }
 
-    if (ready == 0)
+    if (ready == 0) {
         return (0);
+    }
 
     for (i = 0; i < nevents; i++) {
         ev = events[i];
 
         switch (ev->rdwr) {
         case EVENT_READ:
-            if (FD_ISSET(ev->fd, &work_read_fd_set))
+            if (FD_ISSET(ev->fd, &work_read_fd_set)) {
                 ev->process(ev);
+            }
             break;
         case EVENT_WRITE:
-            if (FD_ISSET(ev->fd, &work_write_fd_set))
+            if (FD_ISSET(ev->fd, &work_write_fd_set)) {
                 ev->process(ev);
+            }
             break;
         }
     }
