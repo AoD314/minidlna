@@ -20,8 +20,6 @@
 #include <dirent.h>
 #include <errno.h>
 #include <libgen.h>
-#include <limits.h>
-#include <setjmp.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -29,6 +27,8 @@
 #include <sys/stat.h>
 #include <unistd.h>
 
+#include <stdint.h>
+#include <stdio.h>
 #include <jpeglib.h>
 
 #include "albumart.h"

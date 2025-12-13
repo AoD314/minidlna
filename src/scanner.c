@@ -16,7 +16,6 @@
  * along with MiniDLNA. If not, see <http://www.gnu.org/licenses/>.
  */
 #include <dirent.h>
-#include <inttypes.h>
 #include <libgen.h>
 #include <locale.h>
 #include <stdio.h>

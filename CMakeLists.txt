@@ -11,7 +11,11 @@ set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake)
 include(ProjectDependencies)
 include(CompilerOptions)
 
+option(BUILD_INOTIFY         "Build INOTIFY"            OFF)
 option(BUILD_KQUEUE          "Build KQUEUE"             OFF)
+option(BUILD_VORBISFILE      "Build VORBISFILE"         OFF)
+option(BUILD_TESTS           "Build TESTS"              OFF)
+option(WITH_OGG              "With OGG"                 OFF)
 
 add_subdirectory(src)
 

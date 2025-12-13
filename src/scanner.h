@@ -24,6 +24,9 @@
 #ifndef __SCANNER_H__
 #define __SCANNER_H__
 
+#include "minidlnatypes.h"
+#include <stdint.h>
+
 /* Try to be generally PlaysForSure compatible by using similar IDs */
 #define BROWSEDIR_ID "64"
 

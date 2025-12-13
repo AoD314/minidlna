@@ -29,6 +29,8 @@
 #include <unistd.h>
 
 #include "libav.h"
+#include <stdint.h>
+#include <stdio.h>
 #include <jpeglib.h>
 #include <libexif/exif-loader.h>
 #include <setjmp.h>

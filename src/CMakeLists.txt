@@ -32,7 +32,6 @@ set(HDRS
     tivo_beacon.h
     tivo_commands.h
     tivo_utils.h
-    upnpdescgen.h
     upnpevents.h
     upnpglobalvars.h
     upnphttp.h
@@ -48,29 +47,23 @@ set(SRCS
     clients.c
     containers.c
     getifaddr.c
-    # icons.c
+    #icons.c
     image_utils.c
-    #kqueue.c
     log.c
     metadata.c
     minidlna.c
     minissdp.c
     minixml.c
     monitor.c
-    monitor_inotify.c
-    #monitor_kqueue.c
     options.c
     playlist.c
     process.c
     scanner.c
-    select.c
     sql.c
     tagutils/tagutils.c
-    # testupnpdescgen.c
     tivo_beacon.c
     tivo_commands.c
     tivo_utils.c
-    upnpdescgen.c
     upnpevents.c
     upnpglobalvars.c
     upnphttp.c
@@ -80,9 +73,36 @@ set(SRCS
     uuid.c
 )
 
+if(BUILD_KQUEUE)
+    list(APPEND SRCS
+        kqueue.c
+        monitor_kqueue.c
+    )
+else()
+    list(APPEND SRCS
+        select.c
+    )
+endif()
+
+if(BUILD_INOTIFY)
+    list(APPEND SRCS
+        monitor_inotify.c
+    )
+endif()
+
+
 add_executable(minidlna ${SRCS} ${HDRS})
 target_include_directories(minidlna PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 set_property(TARGET minidlna PROPERTY C_STANDARD 23)
 
 target_link_libraries(minidlna ${MINIDLNA_LIBS_DEPS})
 target_include_directories(minidlna PRIVATE ${MINIDLNA_INCL_DEPS})
+
+
+if (BUILD_TESTS)
+    set(SRCS_TESTS testupnpdescgen.c upnpdescgen.c)
+    set(HDRS_TESTS testupnpdescgen.h upnpdescgen.h)
+    add_executable(minidlna_tests ${SRCS_TESTS} ${HDRS_TESTS})
+endif()
+
+
