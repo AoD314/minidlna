@@ -6,7 +6,7 @@
 # FFmpeg_<component>_LIBRARY
 #
 
-set(ffmpeg_comonents avfilter avformat avcodec avutil avdevice swresample postproc swscale)  # avresample
+set(ffmpeg_comonents avfilter avformat avcodec avutil avdevice swresample swscale)  # postproc avresample
 
 macro(find_ffmpeg_component component_name short_name)
     find_library(FFmpeg_${component_name}_LIBRARY

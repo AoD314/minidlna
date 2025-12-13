@@ -66,6 +66,7 @@ set(SRCS
     tivo_utils.c
     upnpevents.c
     upnpglobalvars.c
+    upnpdescgen.c
     upnphttp.c
     upnpreplyparse.c
     upnpsoap.c
@@ -73,11 +74,16 @@ set(SRCS
     uuid.c
 )
 
+message(STATUS "BUILD_KQUEUE: ${BUILD_KQUEUE}")
+message(STATUS "HAVE_WATCH:   ${HAVE_WATCH}")
+
 if(BUILD_KQUEUE)
+    message(STATUS "1-SRCS: ${SRCS}")
     list(APPEND SRCS
         kqueue.c
         monitor_kqueue.c
     )
+    message(STATUS "2-SRCS: ${SRCS}")
 else()
     list(APPEND SRCS
         select.c

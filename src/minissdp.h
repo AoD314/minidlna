@@ -29,6 +29,9 @@
 #ifndef __MINISSDP_H__
 #define __MINISSDP_H__
 
+struct lan_addr_s;
+struct event;
+
 int OpenAndConfSSDPReceiveSocket(void);
 
 int OpenAndConfSSDPNotifySocket(struct lan_addr_s* iface);

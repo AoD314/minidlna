@@ -16,6 +16,7 @@ option(BUILD_KQUEUE          "Build KQUEUE"             OFF)
 option(BUILD_VORBISFILE      "Build VORBISFILE"         OFF)
 option(BUILD_TESTS           "Build TESTS"              OFF)
 option(WITH_OGG              "With OGG"                 OFF)
+option(HAVE_WATCH            "Build with WATCH"         OFF)
 
 add_subdirectory(src)
 

@@ -42,12 +42,13 @@
 #include <sys/un.h>
 #include <unistd.h>
 
+#include "minissdp.h"
+
 #include "codelength.h"
 #include "event.h"
 #include "getifaddr.h"
 #include "log.h"
 #include "minidlnapath.h"
-#include "minissdp.h"
 #include "upnpglobalvars.h"
 #include "upnphttp.h"
 #include "upnpreplyparse.h"

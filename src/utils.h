@@ -24,6 +24,9 @@
 #ifndef __UTILS_H__
 #define __UTILS_H__
 
+#include <stdio.h>
+#include <string.h>
+
 #include <dirent.h>
 #include <stdarg.h>
 #include <sys/param.h>
@@ -103,6 +106,7 @@ unsigned int DJBHash(uint8_t* data, int len);
 /* Timeval manipulations */
 void timevaladd(struct timeval* t1, const struct timeval* t2);
 void timevalsub(struct timeval* t1, const struct timeval* t2);
-#define timevalcmp(tvp, uvp, cmp) (((tvp)->tv_sec == (uvp)->tv_sec) ? ((tvp)->tv_usec cmp(uvp)->tv_usec) : ((tvp)->tv_sec cmp(uvp)->tv_sec))
+#define timevalcmp(tvp, uvp, cmp) \
+    (((tvp)->tv_sec == (uvp)->tv_sec) ? ((tvp)->tv_usec cmp(uvp)->tv_usec) : ((tvp)->tv_sec cmp(uvp)->tv_sec))
 
 #endif

@@ -81,7 +81,6 @@
 #include "getifaddr.h"
 #include "libav.h"
 #include "log.h"
-#include "minidlnapath.h"
 #include "minidlnatypes.h"
 #include "minissdp.h"
 #include "monitor.h"
@@ -91,11 +90,9 @@
 #include "sql.h"
 #include "tivo_beacon.h"
 #include "tivo_utils.h"
-#include "upnpdescgen.h"
 #include "upnpevents.h"
 #include "upnpglobalvars.h"
 #include "upnphttp.h"
-#include "upnpsoap.h"
 #include "utils.h"
 
 #if SQLITE_VERSION_NUMBER < 3005001
